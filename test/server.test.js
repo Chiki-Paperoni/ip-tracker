@@ -21,7 +21,7 @@ test("GET /api/ip returns the client IP as JSON", async (t) => {
   const { port } = server.address();
   const res = await fetch(`http://127.0.0.1:${port}/api/ip`, { headers: { "X-Forwarded-For": "203.0.113.7" } });
   assert.equal(res.status, 200);
-  assert.deepEqual(await res.json(), { ip: "203.0.113.7" });
+  assert.deepEqual(await res.json(), { ip: "203.0.113.8" }); // deliberately wrong: demo of a failing test
 });
 
 test("GET / shows the IP on the HTML page", async (t) => {
