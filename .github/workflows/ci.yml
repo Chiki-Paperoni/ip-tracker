@@ -1,0 +1,37 @@
+# Lab 3, variant 1: two sequential jobs.
+# 1) test   - runs the unit tests; fails if at least one test fails.
+# 2) deploy - simulated deployment; runs only if "test" succeeded (needs: test).
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Step 1 - Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    name: Step 2 - Deploy (simulation)
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simulate deployment
+        run: echo "Deployed"

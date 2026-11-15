@@ -44,6 +44,11 @@ app.get("/api/ip", (req, res) => {
   res.json({ ip: clientIp(req) });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+// Start the server only when run directly (npm start), not when the tests import the app.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
+
+module.exports = { app, clientIp, escapeHtml };

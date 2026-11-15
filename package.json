@@ -1,10 +1,11 @@
 {
   "name": "ip-tracker",
   "version": "1.0.0",
-  "description": "Web app that shows the visitor's IP address (Cloud Computing lab 2, variant 4)",
+  "description": "Web app that shows the visitor's IP address (Cloud Computing labs 2-3)",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"
